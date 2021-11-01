@@ -136,7 +136,10 @@ immediately after."
               ;; current REPL uses comint. Even if it did, no telling if they
               ;; have their own `comint-send-input' wrapper, so to be safe, I
               ;; simply emulate the keypress.
-              (call-interactively (doom-lookup-key (kbd "RET"))))
+              ;; (call-interactively (doom-lookup-key (kbd "RET")))
+              ;; TODO: why it does not work with python ?
+              (comint-send-input)
+              )
             (sit-for 0.001)
             (redisplay 'force)))
         (when (and (eq origin-window (selected-window))
