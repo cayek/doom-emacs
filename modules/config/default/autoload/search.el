@@ -129,9 +129,9 @@ ARG is set, prompt for a known project to search from."
 (defun +default/org-notes-search ()
   "Perform a text search on `org-directory'."
   (interactive)
-  (require 'org)
-  (let ((default-directory org-directory))
-    (+default/search-project-for-symbol-at-point "")))
+
+  (let* ((consult-preview-key (kbd "M-RET")))
+    (+vertico-file-search :query "" :in "~/Private" :args '("--type" "org"))))
 
 ;;;###autoload
 (defun +default/org-notes-headlines ()
