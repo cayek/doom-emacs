@@ -126,8 +126,12 @@ ARG is set, prompt for a known project to search from."
 ;;;###autoload
 (defun +default/org-notes-search (query)
   "Perform a text search on `org-directory'."
-  (interactive)
-
+  (interactive
+   (list (if (doom-region-active-p)
+             (buffer-substring-no-properties
+              (doom-region-beginning)
+              (doom-region-end))
+           "")))
   (let* ((consult-preview-key (kbd "M-RET")))
     (+vertico-file-search :query "" :in "~/Private" :args '("--type" "org"))))
 
